@@ -1,0 +1,146 @@
+
+<style type="text/css">
+	.ordermain{
+ background: whitesmoke;
+ height: auto;
+ width: 100%;
+ display: flex;
+max-height: 400px;
+min-height: 100px;
+overflow: auto;
+
+
+	}
+	.orderdetail{
+		border-radius: 25px;
+		height: auto;background: #42eff5;
+border: 2px solid black;
+width: 30%;
+float: right;
+overflow: auto;
+padding: 20px;
+margin: 20px;
+	}
+	.ordercontect{
+		border-radius: 25px;
+background: #42eff5;
+height: auto;width: 30%;
+border: 2px solid black;
+overflow: auto;
+padding: 20px;
+margin: 20px;
+
+	}
+	.orderpaymetinfo{
+		border-radius: 25px;
+background: #42eff5;
+height: auto;width: 30%;
+float: left;
+border: 2px solid black;
+overflow: auto;
+padding: 20px;
+margin: 20px;
+	}
+	.tableflex{
+		display: flex;
+	}
+</style>
+<div class="ordermain">
+	<div class="ordercontect gx-5">
+		<% @shippings.each do |ship| %>
+		<% if current_user.id == ship.user_id %>
+		<div class="tableflex">
+		<table>
+			<tr><th><p>Email is:</p></th></tr>
+			<tr><th><p>Phone no. is:</p></th></tr>
+			<tr><th><p>Shipment City is:</p></th></tr>
+			<tr><th><p>Shipment Status is:</p></th></tr>
+			<tr><th><p>shipment zip is:</p></th></tr>
+		</table>
+				<table>
+			<tr><td><p><%= ship.email %></p></td></tr>
+			<tr><td><p><%= ship.phone %></p></td></tr>
+			<tr><td><p><%= ship.city %></p></td></tr>
+			<tr><td><p><%= ship.status %></p></td></tr>
+			<tr><td><p><%= ship.zip %></p></td></tr>
+
+		</table>
+
+		</div>
+			<%= link_to 'Change your address', edit_shipment_path(ship), class:'nav-link'%>
+		<%end%>
+		<%end%>				
+	</div>
+	<div class="orderdetail gx-5">
+		<% @order_item.each do |p| %>
+				<div class="tableflex">
+					<table>
+						<tr><th><p>product name is:</p></th></tr>
+						<tr><th><p>product price is:</p></th></tr>
+						<tr><th><p>product quantity is:</p></th></tr>
+					</table>
+					<table>
+						<tr><td><%= p.idea.name%></td></tr>
+						<tr><td><%= p.idea.price%></td></tr>
+						<tr><td><%= p.quantity%></td></tr>
+					</table>
+				</div>
+		<%end%>		
+	</div>	
+
+<div class="orderpaymetinfo">
+		<% session[:payment] = (@order.total)%>
+			<tr>
+				<td>Gross Total</td>
+				<td>Rs <%= session[:payment] %></td>
+			</tr>
+			</br>
+			</br>
+			<tr>
+				<% if @order.total>5000%>
+					<%@discount=500%>
+					<% session[:payment] = (@order.total)-@discount%>
+				<%else%>
+					<%@discount=100%>
+					<% session[:payment] = (@order.total)-@discount%>
+				<%end%>
+				<td>Discount </td>
+				<td>Rs. <%= @discount %></td>
+			</tr>
+			<tr>
+				</br>
+				</br>
+				<td>Total Bill </td>
+				<td>Rs. <%= session[:payment] %></td>
+			</tr>
+
+					
+<%= form_tag checkuots_path do %>
+  	<article>
+    	<% if flash[:error].present? %>
+      <div id="error_explanation">
+      <p><%= flash[:error] %></p>
+      </div>
+<% end %>
+
+  	</article>
+			</br>
+			</br>
+  	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount=<%= session[:payment] %>
+          data-locale="auto">
+    </script>
+
+
+        
+<% end %>
+
+	
+	</div>
+</div>
+
+
+
+

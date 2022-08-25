@@ -1,0 +1,50 @@
+
+
+<header class="header-container">
+	<div class="header-logo">
+		<i class="fa fa-home" aria-hidden="true" style="font-size:50px;"></i>
+	</div>
+	<div class="search">
+
+		
+			<div class="field">
+				<%= form_tag(search_index_path, :method => "get") do %>
+				<input type="search" placeholder="search here.." name="search">
+				
+			</div>
+			<div class="search-dropdown">
+				  <%= select_tag :category, options_from_collection_for_select(Categoryy.all,"id","name"),prompt: "select category", class: 'form-control' %>
+				<!-- <select name="category" id="category">
+				    <option value="volvo">All Categories</option>
+				    <option value="saab">Electronics</option>
+				    <option value="opel">Mobile</option>
+				    <option value="audi">Car</option>
+				  </select> -->
+			</div>
+		<%end%>
+		
+	</div>
+
+	<div class="header-cart-block">
+		<div class="header-account">
+ 
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user-circle" aria-hidden="true" style="font-size:30px;"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        	  <%= link_to 'log_in', new_user_session_path ,class:"dropdown-item"%>
+         
+          <%= link_to 'log_out', destroy_user_session_path, method: :delete ,class:"dropdown-item"%>
+          <%= link_to 'sign_up', new_user_registration_path ,class:"dropdown-item"%>
+                </div>
+      </li>
+			
+		</div>
+		<div class="header-cart">
+			<i class="fa fa-cart-plus" aria-hidden="true"style="font-size:30px;"></i>
+		
+			<span class="cart_count"><%= session[:total_cart_items] %></span>
+		</div>
+	</div>
+</header>

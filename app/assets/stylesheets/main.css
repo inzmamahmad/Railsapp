@@ -1,0 +1,153 @@
+
+	.header-container{
+		width: 100%;
+		min-height: 100px;
+		height: fit-content;
+		color: white;
+		background: blue;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 40PX;
+	}
+	.header-cart-block{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap:20px;
+	}	
+	.rating{
+		margin: auto 0;
+	}
+.rating_star{
+	background: url('/images/star.png');
+	width: 16px;
+	height: 16px;
+	display: block;
+	float: left;
+	color: red;
+}
+.on{
+	background-position: 0 10px;
+}
+
+	.index-card-block{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap:0px;
+		padding: 20px;
+	}
+	.search{
+		position: relative;
+	}
+	.search input{
+		width: 550px;
+		padding: 10px 15px;
+		border-radius: 50px;
+	}
+	.search input:focus{
+		outline: none!important;
+	}
+	.search-dropdown{
+		
+	}
+	.search-dropdown select{
+		width: 150px;
+		padding: 5px;
+		position: absolute;
+		right: 10px;
+		bottom: 7px;
+		border: none;
+		background: white;
+	}
+	
+	.header-cart{
+		position: relative;
+	
+	}
+	.cart_count{
+		height: 25px;
+		width: 25px;
+		border: 1px solid blue;
+		border-radius: 50%;
+		position: absolute;
+		right: -13px;
+		top: -10px;
+		color: blue;
+		/*margin-left: 20px*/;
+		background: white;
+		  display: flex;
+		 justify-content: center;
+		  align-content: center;
+	}
+	
+  .navebar-container{
+  	display: flex;
+    width: 100%;
+    height: 100px;
+    color: white;
+    background: darkblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40PX;
+  }
+
+    .cards-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:20px;
+  }
+  .nave_bg_color{
+  	background: darkblue;
+  	padding: 2%;
+  	color: white!important;
+  	font-size: 30px;
+
+  }
+  .nav-link{
+  	color: white!important;
+  }
+  .section_header{
+  			width: 100%;
+		min-height: 100px;
+		height: fit-content;
+		color: white;
+		background: blue;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 40PX;
+  }
+
+@media(max-width: 992px){
+	.header-container{
+		flex-direction: column!important;
+		gap: 20px!important;
+	}
+	/*.header-logo{
+  		order: 1;
+  }*/
+	
+	/*.header-cart-block{
+		order: 2;
+	}*/
+	.search{
+		order: 2;
+	}
+	.search input{
+		width: 100%!important;
+		padding: 5px 10px!important;
+		
+
+	}
+	.search-dropdown select{
+		width: 150px;
+		padding: 0px!important;
+		border: none;
+		
+	}
+	
+}

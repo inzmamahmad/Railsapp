@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @idea.name %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @idea.price %>
+</p>
+<p>
+  <strong>Quantity:</strong>
+  <%= @idea.quantity %>
+
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @idea.description %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+<%= image_tag(@idea.picture_url, width: 600) if @idea.picture.present? %>
+</p>
+              
+<h3>Comments</h3>
+<% @comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user_name %></strong>
+    <br>
+    <p><%= comment.body %></p>
+    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
+
+<%= link_to "Write a Review", new_movie_review_path(@movie) %>
+
+        <div class="col-md-7 col-md-offset-1">
+
+
+          <% if @reviews.blank? %>
+            <h3>No reviews just yet, would you like to add the first!</h3>
+   
+          <% else %>
+            <% @reviews.each do |review| %>
+              <div class="reviews">
+                <div class="star-rating" data-score= <%= review.rating %> ></div>
+                <p><%= review.comment %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+<%= link_to 'Edit', edit_idea_path(@idea) %> |
+<%= link_to 'Back', ideas_path %>
+  <script>
+      $('.star-rating').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+              return $(this).attr('data-score');
+      }
+    });
+  </script>

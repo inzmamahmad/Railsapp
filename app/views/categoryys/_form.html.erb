@@ -1,0 +1,33 @@
+<%= form_with(model: categoryy, local: true) do |form| %>
+  <% if categoryy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(categoryy.errors.count, "error") %> prohibited this categoryy from being saved:</h2>
+
+      <ul>
+      <% categoryy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+  </br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+  <% id = current_user.id%>
+<%= form.hidden_field :user_id, value:id, class:"form-control"%>
+</div>
+
+<!--   <div class="field">
+    <#%= form.label :user_id %>
+    <#%= form.text_field :user_id %>
+  </div> -->
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

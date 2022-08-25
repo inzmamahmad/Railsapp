@@ -1,0 +1,72 @@
+<%= form_with(model: idea, local: true) do |form| %>
+  <% if idea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+      <% idea.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col">
+      <div class="field">
+    <%= form.label :name %>
+  </br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    </br>
+    <%= form.text_field :quantity %>
+  </div>
+
+    <div class="field">
+    <%= form.label :price %>
+    </br>
+    <%= form.text_field :price %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :description %>
+    </br>
+    <%= form.text_area :description %>
+  </div>
+<div class="field">
+  <% id = current_user.id%>
+<%= form.hidden_field :user_id, value:id, class:"form-control"%>
+</div>
+<div class="field">
+  <%= select_tag "idea[categoryy_id]", options_from_collection_for_select(Categoryy.all,"id","name"),prompt: "select category", class: 'form-control' %>
+<%#= form.hidden_field :category_id, value: :category_id, class:"form-control"%>
+  
+</div>
+
+  <div class="field">
+    <%= form.label :picture %>
+    </br>
+<%= form.file_field :picture %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<!-- https://demo.leebrosus.com/petpuzzy/product/papaya-single/ -->
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+</div>
